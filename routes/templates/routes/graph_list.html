@@ -1,0 +1,28 @@
+﻿{% extends 'routes/base_routes.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	stations
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	
+
+{% for key, value in edges.edges.items%}
+{% for v in value %}
+ {{key}}->{{v}}</br>
+{%endfor%}
+</br>
+{%endfor%}
+
+ <a class="btn btn-info" href="{% url 'railway_stations_create_front_url'%}" role="button">Новая станция</a>
+ {% include "pagination.html" with page=stations %}
+</div>
+{% endblock %} 
+
+	        
+<!--{flat.get_absolute_url}-->

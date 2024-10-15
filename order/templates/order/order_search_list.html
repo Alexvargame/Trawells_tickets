@@ -1,0 +1,77 @@
+﻿{% extends 'order/base_order.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Order search List
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 50%;
+		
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+	<table>
+  		<tr>
+		 <th style="width:2%">I</th>
+		 <th style="width:50%">Имя</th>
+		 <th style="width:30%">Фамилия</th>
+		 <th style="width:30%">email</th>
+		 <th style="width:30%">Адрес</th>
+		 <th style="width:30%">Индекс</th>
+		 <th style="width:30%">Город</th>
+		 <th style="width:30%">Создан</th>
+		 <th style="width:30%">Изменен</th>
+		 <th style="width:30%">Оплачен</th>
+		
+
+
+  		 </tr>
+	
+	
+		
+	{% for order in orders%}
+		<tr>
+		
+		  <td style="font-size:80%;" ><a href="">I<a></td>
+		  <td style="font-size:80%;" ><a href="">{{order.first_name}}<a></td>
+		  <td style="font-size:80%;" >{{order.last_name}}</td>
+		  <td style="font-size:80%;" >{{order.email}}</td>
+		  <td style="font-size:80%;" >{{order.address}}</td>
+		  <td style="font-size:80%;" >{{order.postal}}</td>
+		  <td style="font-size:80%;" >{{order.city}}</td>
+		  <td style="font-size:80%;" >{{order.created}}</td>
+		  <td style="font-size:80%;" >{{order.updated}}</td>
+		  <td style="font-size:80%;" >{{order.paid}}</td>
+	
+	
+		</tr>
+	{% endfor %}
+	</table>
+{{s}}
+ <a class="btn btn-info" href="{% url 'order_search'%}" role="button">Новый поиск</a>
+ {% include "pagination.html" with page=orders %}
+</div>
+{% endblock %} 
+
+	        
+<!--{flat.get_absolute_url}-->

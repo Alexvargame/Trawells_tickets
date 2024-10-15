@@ -1,0 +1,29 @@
+﻿{% extends 'railway/base_railway.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Расстояния до станций
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+
+
+Расстояния от {{station}}:</br>
+
+{%for key, value in name_distance.items%}:
+            {{key}}:{{value}}</br>
+{%endfor%}
+
+
+
+{{s}}
+
+ 
+
+</div>
+{% endblock %} 
+

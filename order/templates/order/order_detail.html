@@ -1,0 +1,43 @@
+﻿{% extends 'order/base_order.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	City
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<div class="card" style="width: 50rem;background-color: #dddddd;color:#2c2c2c;">
+ 	 <div class="card-header">
+		Пользователь-{{user}}
+ 	 </div>
+	 
+  	 Имя:{{order.first_name}}</br>
+ 	 Фамилия:{{order.last_name}}</br>
+	 E-mail:{{order.email}}</br>	 
+	 Адрес:{{order.adddress}}</br>	
+	 Почт.индекс:{{order.postal}}</br>	
+	 Город:{{order.city}}</br>
+	 Создан:{{order.created}}</br>
+	 Изменен:{{order.updated}}</br>
+   	 Оплата:{{order.paid}}</br>
+	{%for t in tickets%}	
+	<a href="{{t.get_absolute_url}}">{{t}}</a></br>
+	{%endfor%}
+	</div>
+{{s}}
+	
+</div>
+
+{% endblock %} 
+
+<!--{% for fl in flat.items %}
+		
+		<h4>{{fl.label}}</h4>
+		<p>{{fl}}</p>
+	{% endfor %}
+-->
+

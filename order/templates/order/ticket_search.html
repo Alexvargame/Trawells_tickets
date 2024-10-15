@@ -1,0 +1,59 @@
+﻿{% extends 'order/base_order.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Order search List
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 90%;
+		
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+<form action="" method='get' enctype="multipart/form-data">
+		{% csrf_token %}
+<div class="form-group">
+	<table>
+
+	
+	
+		<tr>
+		
+
+		  <td style="font-size:80%;" >Имя{{form.train}}<a></td>
+		  <td style="font-size:80%;" >Начальная дата{{form.date_b}}</td>
+		  <td style="font-size:80%;" >Конечная дата{{form.date_e}}</td>
+
+	
+		</tr>
+	
+	
+	</table>
+{{s}}
+ <button type="submit" class="btn btn-primary">Искать</button>
+
+</div>
+{% endblock %} 
+
+	        
+<!--<td style="font-size:80%;" >Адресс{{form.address}}</td>
+		  <td style="font-size:80%;" >Город{{form.city}}</td>-->

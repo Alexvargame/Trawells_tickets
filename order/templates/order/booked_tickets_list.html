@@ -1,0 +1,81 @@
+﻿{% extends 'order/base_order.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Order search List
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 50%;
+		
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+	
+	
+
+
+<table>
+  		<tr>
+		 <th style="width:2%">I</th>
+		 <th style="width:50%">Поезд</th>
+		 <th style="width:30%">Пункт отправления</th>
+		 <th style="width:30%">Пункт прибытия</th>
+		 <th style="width:30%">Дата отправления</th>
+		 <th style="width:30%">Дата покупки</th>
+		 <th style="width:30%">Ранг</th>
+		 <th style="width:30%">Вагон</th>
+		 <th style="width:30%">Место</th>
+		 <th style="width:30%">Цена</th>
+		 <th style="width:30%">Бронь</th>
+
+
+  		 </tr>
+	
+	
+		
+	{% for booked_ticket in booked_tickets%}
+		<tr>
+		
+		  <td style="font-size:80%;" ><a href="{% url 'confirm_booked' pk=booked_ticket.id %}">I<a></td>
+		  <td style="font-size:80%;" ><a href="">{{booked_ticket.train}}<a></td>
+		  <td style="font-size:80%;" >{{booked_ticket.start}}</td>
+		  <td style="font-size:80%;" >{{booked_ticket.finish}}</td>
+		  <td style="font-size:80%;" >{{booked_ticket.date_start}}</td>
+		  <td style="font-size:80%;" >{{booked_ticket.date_bought}}</td>
+		  <td style="font-size:80%;" >{{booked_ticket.rank}}</td>
+		  <td style="font-size:80%;" >{{booked_ticket.carriage}}</td>
+		  <td style="font-size:80%;" >{{booked_ticket.place}}</td>
+		  <td style="font-size:80%;" >{{booked_ticket.price}}</td>
+		  <td style="font-size:80%;" >{{booked_ticket.booked}}</td>
+	
+		</tr>
+	{% endfor %}
+	</table>
+{{s}}
+ <a class="btn btn-info" href="{% url 'booked_tickets'%}" role="button">Новый поиск</a>
+ {% include "pagination.html" with page=booked_ticket %}
+</div>
+{% endblock %} 
+
+	        
+<!--{flat.get_absolute_url}-->

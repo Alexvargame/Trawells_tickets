@@ -1,0 +1,70 @@
+﻿{% extends 'railway/base_railway.html'%}
+{% load rest_framework %}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Update station
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 30%;
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 8px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+Город: {{station.city}}
+	<form action="{{station.get_update_url}}" method='post' enctype="multipart/form-data">
+		{% csrf_token %}
+<div class="form-group">
+{{form.name}}</br>
+<table>
+  		<tr>
+   		 <th style="width:2%">Соседние станции</th>
+    		 <th style="width:3%">Остальные</th>
+  		 </tr>
+	
+	
+	
+		<tr>
+		 <td style="font-size:80%;">
+		
+		
+		{{neighs}}</br>
+		
+		</td>
+    		 <td style="font-size:80%;">{{neighs_add}}</td>
+		
+	
+	</table>
+	{{form.status}}</br>
+
+
+	
+<button type="submit" class="btn btn-primary">Сохранить</button>
+	
+	</div>
+	
+        </form>
+{{s}}{{station.get_neighbours}}</br>
+
+</div>
+{% endblock %} 
+
+<!--{flat.get_absolute_url}-->

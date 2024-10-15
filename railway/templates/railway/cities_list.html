@@ -1,0 +1,59 @@
+﻿{% extends 'railway/base_railway.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Cities
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 50%;
+		
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+	<table>
+  		<tr>
+
+		 <th style="width:30%">Название</th>
+
+  		 </tr>
+	
+	
+		
+	{% for city in cities%}
+		<tr>
+		
+		  <td style="font-size:80%;"><a href="{{city.get_absolute_url}}">{{city.name}}<a></td>
+	
+		
+	{% endfor %}
+	
+	
+	</table>
+{{s}}
+ <a class="btn btn-info" href="{% url 'city_create_url'%}" role="button">Новый город</a>
+ {% include "pagination.html" with page=cities %}
+</div>
+{% endblock %} 
+
+	        
+<!--{flat.get_absolute_url}-->

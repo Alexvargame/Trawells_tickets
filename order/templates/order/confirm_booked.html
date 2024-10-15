@@ -1,0 +1,33 @@
+﻿{% extends 'order/base_order.html'%}
+
+ 
+{% block title %}
+		
+	Confirm Booked
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	 Поезд: {{ticket.train}}</br>	 
+	 Пункт отбытия: {{ticket.start}}</br>
+	 Пункт назначения: {{ticket.finish}}</br>
+	 Дата поездки: {{ticket.date_start}}</br>
+	 Дата покупки билета: {{ticket.date_bought}}</br>
+	 Ранг: {{ticket.rank}}</br>
+	 Цена: {{ticket.price}}</br>
+	 Вагон: {{ticket.carriage}}</td>
+	 Место: {{ticket.place}}</td>
+	 Счет: <a href="{{order.get_absolute_url}}">{{order}}</a></br>
+	
+	<h3>Подтвердить бронь?</b></h3>
+
+	<form action="{% url 'confirm_booked' pk=ticket.id %}" method='post'>
+		{% csrf_token %}
+	<a href="{{ticket.cancel_booked_url}}">Отменить</a>
+	<button type="submit" class="btn btn-danger">Подтвердить</button>
+	</form>
+	
+</div>
+{% endblock %} 
+

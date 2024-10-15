@@ -1,0 +1,62 @@
+﻿{% extends 'railway/base_railway.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	TicketRanks
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 70%;
+		
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+	<table>
+  		<tr>
+		 
+		 <th style="width:20%">Ранг</th>
+		 <th style="width:80%">Описание</th>
+
+  		 </tr>
+	
+	
+		
+	{% for ticketrank in ticketranks%}
+		<tr>
+		
+		  <td style="font-size:80%;" ><a href="{{ticketrank.get_absolute_url}}">{{ticketrank.rank}}<a></td>
+		  <td style="font-size:80%;" ><a href="">{{ticketrank.description}}<a></td>
+		  
+	
+		</tr>
+	{% endfor %}
+	
+	
+	</table>
+{{s}}
+ <a class="btn btn-info" href="{% url 'ticketrank_create_front_url'%}" role="button">Новый ранг</a>
+ {% include "pagination.html" with page=ticketranks %}
+</div>
+{% endblock %} 
+
+	        
+<!---->

@@ -1,0 +1,74 @@
+﻿{% extends 'railway/base_railway.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Tickets
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 80%;
+		
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+	{{train}}
+	<form action="{%url 'tickets_choice_url' pk=train.id %}" method='post' enctype="multipart/form-data">
+		{% csrf_token %}
+<div class="form-group">
+
+	<table>
+	
+	
+		
+	
+		<tr>
+		
+
+		  <td style="font-size:80%; width:40%" >Пункт отправления{{start}}</td>
+		  <td style="font-size:80%; width:40%" >Пункт прибытия{{finish}}</td>
+		  <td style="font-size:80%; width:40%" >Дата{{date_train}}</td>
+		  <td style="font-size:80%; width:40%" >Время{{choice_train}}</td>
+		  <td style="font-size:80%; width:5%" >Вагон{{form.carriage}}</td>
+		  <td style="font-size:80%; width:5%" >Место{{form.place}}</td>
+		  <td style="font-size:80%; width:5%" >Ранг{{form.rank}}</td>
+		 
+	
+		</tr>
+	
+	
+	
+	</table>
+
+	<button type="submit" class="btn btn-primary">Купить</button>
+	
+	</div>
+	
+        </form>
+<p style="color:red";>{{message}}</p>
+{{s}}
+
+</div>
+{% endblock %} 
+
+	        
+<!---->
+
+	

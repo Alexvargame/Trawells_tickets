@@ -1,0 +1,44 @@
+﻿{% extends 'routes/base_routes.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Расчет маршрута по времени
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+
+<form action="{% url 'routes_by_path_time_list_url'%}" style="width:30%" method='get'>
+		{% csrf_token %}
+	 
+	<div class="form-group">
+	
+	Начальный пункт:{{form.start}}Конечный пункт:{{form.finish}}
+ 	
+	
+<button type="submit" class="btn btn-primary">Рассчитать</button>
+</div>
+</form>
+
+{% if start %} Кратчайшее расстояние от {{start}} до {{finish}}{%endif%}</br>
+{%for key, value in path.items%}
+            {{key}}{{value}}
+			
+{%endfor%}
+Итого: {{all_distance}}</br>
+Поезда: </br>
+{%for key_tr,val_tr in get_trains.items%}
+			
+			{{key_tr}}</br>
+
+	{%endfor%}</br>
+{{s}}
+
+{{graph}}
+
+</div>
+{% endblock %} 
+

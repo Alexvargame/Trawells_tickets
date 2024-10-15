@@ -1,0 +1,70 @@
+﻿{% extends 'railway/base_railway.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Tickets
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 70%;
+		
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+	{{train}}
+	<form action="{%url 'train_tickets_bought_url' pk=train.id %}" method='get' style="width:30%; enctype="multipart/form-data">
+		{% csrf_token %}
+<div class="form-group">
+		
+	<table>
+	
+	
+		
+	
+		<tr>
+		
+
+		  <td style="font-size:80%; width:50%" >Дата{{form.date}}</td>
+
+		  <td style="font-size:80%; width:50%" >Время{{time}}</td>
+		 
+	
+		</tr>
+	
+	
+	
+	</table>
+
+	<button type="submit" class="btn btn-primary">Искать</button>
+	
+	</div>
+	
+        </form>
+
+{{s}}
+
+</div>
+{% endblock %} 
+
+	        
+<!---->
+
+	

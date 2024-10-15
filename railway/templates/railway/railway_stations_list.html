@@ -1,0 +1,61 @@
+﻿{% extends 'railway/base_railway.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	stations
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 50%;
+		
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+	<table>
+  		<tr>
+
+		 <th style="width:30%">Название</th>
+
+  		 </tr>
+	
+	
+		
+	{% for station in stations%}
+		<tr>
+		
+		  <td style="font-size:80%;width:80%;"><a href="{{station.get_absolute_url}}">{{station.name}}-{{station.city}}<a></td>
+		 <td style="font-size:80%;width: 20%;">{%if station.status%}Активный{%else%}Временно закрыт{%endif%}</td>
+ 		 </tr>
+	
+		
+	{% endfor %}
+	
+	
+	</table>
+{{s}}
+ <a class="btn btn-info" href="{% url 'railway_stations_create_front_url'%}" role="button">Новая станция</a>
+ {% include "pagination.html" with page=stations %}
+</div>
+{% endblock %} 
+
+	        
+<!--{flat.get_absolute_url}-->

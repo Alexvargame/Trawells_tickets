@@ -1,0 +1,45 @@
+﻿{% extends 'routes/base_routes.html'%}
+{% load rest_framework %}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Create NeighboursDistance
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 30%;
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 8px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+	<form action="{{neighbours_distance.get_absolute_url}}" style="width:50%" method='post'>
+		{% csrf_token %}
+	 {%render_form serializer%}
+
+<button type="submit" class="btn btn-primary">Сохранить</button>
+	
+
+	
+        </form>
+{{s}}</br>
+
+</div>
+{% endblock %} 
+
+<!--{flat.get_absolute_url}-->

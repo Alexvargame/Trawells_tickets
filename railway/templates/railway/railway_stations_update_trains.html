@@ -1,0 +1,51 @@
+﻿{% extends 'railway/base_railway.html'%}
+{% load rest_framework %}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Update station
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 30%;
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 8px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+Город: {{st}}
+	<form action="{% url 'railway_stations_update_trains_front_url' pk=station.id %}" method='post'>
+		{% csrf_token %}
+<div class="form-group">
+{{form.station}}</br>
+
+
+
+	
+<button type="submit" class="btn btn-primary">Сохранить</button>
+	
+	</div>
+	
+        </form>
+{{s}}</br>
+
+</div>
+{% endblock %} 
+
+<!--{flat.get_absolute_url}-->

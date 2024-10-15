@@ -1,0 +1,64 @@
+﻿{% extends 'railway/base_railway.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Trains
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 40%;
+		
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+	<table>
+  		<tr>
+
+		 <th style="width:30%">Номер-Название</th>
+		 <th style="width:30%">Пункт отправления</th>
+		 <th style="width:30%">Пункт прибытия</th>
+
+
+  		 </tr>
+	
+	
+		
+	{% for train in trains%}
+		<tr>
+		
+		  <td style="font-size:80%;" ><a href="{{train.get_absolute_url}}">{{train.number}} {{train.name}} <a></td>
+		  <td style="font-size:80%;" >{{train.train_begin}}</td>
+		  <td style="font-size:80%;" >{{train.train_end}}</td>
+	
+		</tr>
+	{% endfor %}
+	
+	
+	</table>
+{{s}}
+ <a class="btn btn-info" href="{% url 'train_create_front_url'%}" role="button">Новый поезд</a>
+ {% include "pagination.html" with page=trains %}
+</div>
+{% endblock %} 
+
+	        
+<!--{flat.get_absolute_url}-->

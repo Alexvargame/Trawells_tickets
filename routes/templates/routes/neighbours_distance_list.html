@@ -1,0 +1,63 @@
+﻿{% extends 'routes/base_routes.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Cities
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 50%;
+		
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+	<table>
+  		<tr>
+
+		<th style="width:30%">Начальный пункт</th>
+		<th style="width:30%">Конечный пункт</th>
+		<th style="width:30%">Расстояние</th>
+
+  		 </tr>
+	
+	
+		
+	{% for nd in neighbours_distance%}
+		<tr>
+		
+		  <td style="font-size:80%;"><a href="{{nd.get_absolute_url}}">{{nd.start}}<a></td>
+		  <td style="font-size:80%;">{{nd.finish}}</td>
+		  <td style="font-size:80%;">{{nd.distance}}</td>
+		</tr>
+		
+	{% endfor %}
+	
+	
+	</table>
+{{s}}
+ <a class="btn btn-info" href="{% url 'neighbours_distance_create_url'%}" role="button">Добавить</a>
+ {% include "pagination.html" with page=neighbours_distance %}
+</div>
+{% endblock %} 
+
+	        
+<!--{flat.get_absolute_url}-->

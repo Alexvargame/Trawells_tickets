@@ -1,0 +1,22 @@
+﻿{% extends 'railway/base_railway.html'%}
+
+ 
+{% block title %}
+		
+	Delete City
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+
+	<form action="{{city.get_delete_url}}" method='post'>
+		{% csrf_token %}
+	<h3>Вы уверены, что хотите удалить объект?<b>"{{city.id}}"</b></h3>
+	<a href="{{city.get_absolute_url}}">Отменить</a>
+	<button type="submit" class="btn btn-danger">Удалить</button>
+	</form>
+	
+</div>
+{% endblock %} 
+

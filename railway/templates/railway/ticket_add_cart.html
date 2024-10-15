@@ -1,0 +1,65 @@
+﻿{% extends 'railway/base_railway.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Ticket
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<div class="card" style="width: 50rem;background-color: #dddddd;color:#2c2c2c;">
+ 	 <div class="card-header">
+		Пользователь-{{user}}
+ 	 </div>
+	 Поезд: {{ticket.number}}</br>	 
+	 Пункт отбытия: {{ticket.start}}</br>
+	 Пункт назначения: {{ticket.finish}}</br>
+	 Дата поездки: {{ticket.date_start}}</br>
+	 Дата покупки билета: {{ticket.date_bought}}</br>
+	 Ранг: {{ticket.rank}}</br>
+	 Цена: {{ticket.price}}</br>
+	 Вагон: {{ticket.carriage}}</td>
+	 Место: {{ticket.place}}</td>
+	 Бронь: <td style="font-size:80%;" >{{ticket.booked}}</td>
+			
+	 
+	<p class="price"></p>
+	 <form action="{% url "cart_add" ticket.id %}" method="post">
+ 	{{ cart_ticket_form }}
+ 	{% csrf_token %}
+ 	<input type="submit" value="Add to cart">
+ 	</form>
+	
+	</div>
+{{s}}
+
+{% if request.user.is_authenticated %}
+
+
+
+<div class="obj-panel">
+	<p>Выбрать</p>
+	 {% block obj-panel%}
+		<a class="btn btn-light" href="{{ticket.get_update_url}}">Редактировать</a>
+		<a class="btn btn-danger" href="{{ticket.get_delete_url}}">Del</a>
+		<a class="btn btn-light" href="{% url 'tickets_url'%}">Вернуться к списку</a>
+	 {%endblock%}
+	</div>
+{% endif%}
+
+
+
+
+<br>
+{{s1}}
+<br>
+
+</div>
+
+{% endblock %} 
+
+<!-- -->
+

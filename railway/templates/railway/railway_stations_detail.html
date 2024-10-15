@@ -1,0 +1,118 @@
+﻿{% extends 'railway/base_railway.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	station
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 100%;
+		
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+	<div class="card" style="width: 50rem;background-color: #dddddd;color:#2c2c2c;">
+ 	 <div class="card-header">
+		Пользователь-{{user}}
+ 	 </div>
+	 
+  	 Название- {{station.name}}</br>
+	 Город- {{station.city}}</br>
+	 </br>
+	 Соседние вокзалы- </br>
+	 {%for neigh in station.get_neighbours%}
+	 {{neigh}}</br>
+	 {%endfor%}
+	 </br>
+	 Статус- {%if station.status%} Активный {%else%} Закрыт {%endif%}
+	
+	<details><summary>Поезда, через станцию</summary>
+	 <table>
+  		<tr>
+   		 <th style="width:2%">Номер</th>
+    		 <th style="width:3%">Название</th>
+		 <th style="width:3%">Статус</th>
+    		 <th style="width:10%">Пункт отправления</th>
+		 <th style="width:10%">Пункт прибытия</th>
+		 <th style="width:20%">Станции по пути следования</th>
+  		 </tr>
+	
+	
+		
+	{% for train in trains%}
+		<tr>
+		 <td style="font-size:80%;"><a href="{{train.get_absolute_url}}">{{train.number}}</a></td>
+    		 <td style="font-size:80%;">{{train.name}}</td>
+		 <td style="font-size:80%;">{{train.status}}</td>
+		 <td style="font-size:80%;">{{train.train_begin}}</td>
+		 <td style="font-size:80%;">{{train.train_end}}</td>
+		 <td style="font-size:80%;">
+		 <details><summary>Развернуть</summary>
+		 {%for stt in train.get_stations%}
+			{{stt}}</br>
+			{%endfor%}
+		  </details></td>
+		</tr>
+
+	{% endfor %}
+	
+	
+	</table>
+</details>
+	
+	</div>
+{{s}}
+
+{% if request.user.is_authenticated %}
+
+
+
+<div class="obj-panel">
+	<p>Выбрать</p>
+	 {% block obj-panel%}
+		<a class="btn btn-light" href="{{station.get_update_url}}">Редктировать</a>
+		<a class="btn btn-danger" href="{{station.get_delete_url}}">Del</a>
+		<a class="btn btn-light" href="{% url 'railway_stations_update_trains_front_url' pk=station.id %}">Обновить</a>
+		<a class="btn btn-light" href="{% url 'railway_stations_distances_front_url' pk=station.id %}">Все расстояния</a>
+		<a class="btn btn-light" href="{% url 'railway_stations_url'%}">Вернуться к списку</a>
+	 {%endblock%}
+	</div>
+{% endif%}
+
+
+
+
+<br>
+{{s1}}
+<br>
+
+</div>
+
+{% endblock %} 
+
+<!--{% for fl in flat.items %}
+		
+		<h4>{{fl.label}}</h4>
+		<p>{{fl}}</p>
+	{% endfor %}
+-->
+

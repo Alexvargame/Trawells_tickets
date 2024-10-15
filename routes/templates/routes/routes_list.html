@@ -1,0 +1,97 @@
+﻿{% extends 'routes/base_routes.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Расчет маршрута
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 100%;
+		
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+<form action="{% url 'routes_by_distance_list_url'%}" style="width:30%" method='get'>
+		{% csrf_token %}
+	 
+	<div class="form-group">
+	
+	Начальный пункт:{{form.start}}Конечный пункт:{{form.finish}}
+ 	
+	
+<button type="submit" class="btn btn-primary">Рассчитать</button>
+</div>
+</form>
+
+{% if start %} Кратчайшее расстояние от {{start}} до {{finish}}{%endif%}</br>
+{%for key, value in path.items%}
+            {{key}}{{value}} </br>
+			
+{%endfor%}
+Итого: {{all_distance}}</br>
+{% if get_trains%}
+Поезда: </br> <details><summary>Развернуть</summary>
+<table>
+  		<tr>
+   		 <th style="width:2%">Номер</th>
+    		 <th style="width:3%">Название</th>
+		 <th style="width:3%">Статус</th>
+    		 <th style="width:10%">Пункт отправления</th>
+		 <th style="width:10%">Пункт прибытия</th>
+		 <th style="width:10%">Станции по пути следования</th>
+		 <th style="width:5%">Время в пути </th>
+		 <th style="width:5%">Купить билет </th>
+  		 </tr>
+	
+	
+		
+	{% for train, value in get_trains.items%}
+		<tr>
+		 <td style="font-size:80%;"><a href="{{train.get_absolute_url}}">{{train.number}}</a></td>
+    		 <td style="font-size:80%;">{{train.name}}</td>
+		 <td style="font-size:80%;">{{train.status}}</td>
+		 <td style="font-size:80%;">{{train.train_begin}}</td>
+		 <td style="font-size:80%;">{{train.train_end}}</td>
+		 <td style="font-size:80%;">
+		 <details><summary>Развернуть</summary>
+		 {%for st in train.get_stations%}
+			{{st}}</br>
+			{%endfor%}
+		  </details></td>
+			
+		 <td style="font-size:80%;">{{value}}</td>
+		 <td style="font-size:80%;"><a href="{%url 'tickets_choice_url' pk=train.id %}">Купить билет</a></br>
+		 <a href="{%url 'tickets_booked_url' pk=train.id %}">Бронировать билет</a></td>
+		</tr>
+	
+	{% endfor %}
+	
+	
+	</table>
+</details>
+{%endif%}
+{{s1}}
+</br>
+</br>
+{{s}}
+{% endblock %} 
+

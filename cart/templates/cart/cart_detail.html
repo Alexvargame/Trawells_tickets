@@ -1,0 +1,70 @@
+﻿{% extends 'cart/base_cart.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Покупка билетов
+{% endblock %}
+
+
+{% block content %}
+<h1>Your shopping cart</h1>
+ 
+<table class="cart">
+ <thead>
+ <tr>
+ 
+ <th>Билет</th>
+ <th>Кол-во</th>
+ <th>Удалить</th>
+ <th>Цена за ед.</th>
+ <th>Цена</th>
+ </tr>
+ </thead>
+
+
+<body>
+
+ {% for item in cart %}
+ {% with ticket=item.ticket %}
+ 
+<tr>
+ <td>{{ ticket.train }}</br>В:{{ticket.carriage}}.М:{{ticket.place}}.Р:{{ticket.rank}}</td>
+ <td>{{item.quantity}}</td>
+ <td><a href="{% url "cart_remove" ticket_id=ticket.id%}">Удалить</a></td>
+ <td class="num">{{ item.price }}</td>
+
+ <td class="num">{{ item.total_price }}</td>
+ <td><a href="{%url 'tickets_choice_url' pk=ticket.train.train.id %}">Купить на этот же поезд</a></br>
+ <a href="{%url 'tickets_booked_url' pk=ticket.train.train.id %}">бронь на этот же поезд</a>
+  </td>
+ </tr>
+
+ {% endwith %}
+ {% endfor %}
+
+
+ <tr class="total">
+ <td>Total</td>
+ <td colspan="4"></td>
+ <td class="num">${{ cart.get_total_price }}</td>
+ </tr>
+ </tbody>
+
+ </table>
+
+ <p class="text-right">
+ <a href="{%url 'routes_by_distance_list_url'%}" class="button light">Продолжить покупку</a>
+<a href="{% url "order_create" %}" class="button">
+ Сформировать счет
+</a>
+ </p>
+{% endblock %} 
+
+<--<form action="{% url "cart_add" ticket_id=ticket.id %}" method="post">
+ {{ item.update_quantity_form.quantity }}
+ {{ item.update_quantity_form.update }}
+ <input type="submit" value="Update">
+ {% csrf_token %}
+ </form>-->

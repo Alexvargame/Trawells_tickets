@@ -1,0 +1,66 @@
+﻿{% extends 'railway/base_railway.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	City
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<div class="card" style="width: 50rem;background-color: #dddddd;color:#2c2c2c;">
+ 	 <div class="card-header">
+		Пользователь-{{user}}
+ 	 </div>
+	 Номер: {{train.number}}</br>	 
+  	 Название: {%if train.name%}{{train.name}}{%else%}б/н{%endif%}</br>
+	 Статус: {{train.status}}</br>
+	 Пункт отбытия: {{train.train_begin}}</br>
+	 Пункт назначения: {{train.train_end}}</br>		
+	 Станции: </br>
+	 {%for station in train.get_stations%}
+	 {{station}}</br>
+	 {%endfor%}
+	 
+	
+	</div>
+{{s}}
+
+
+{% if request.user.is_authenticated %}
+
+
+
+<div class="obj-panel">
+	<p>Выбрать</p>
+	 {% block obj-panel%}
+		<a class="btn btn-light" href="{{train.get_update_url}}">Редактировать</a>
+		<a class="btn btn-danger" href="{{train.get_delete_url}}">Del</a>
+		<a class="btn btn-light" href="{% url 'trains_url'%}">Вернуться к списку</a>
+		<a class="btn btn-light" href="{%url 'tickets_choice_url' pk=train.id%}">Купить билет</a>
+		<a class="btn btn-light" href="{%url 'tickets_booked_url' pk=train.id%}">Забронировать билет</a>
+		<a class="btn btn-light" href="{%url 'train_tickets_bought_url' pk=train.id %}">Купленные билеты на этот поезд</a>
+	 {%endblock%}
+	</div>
+{% endif%}
+
+
+
+
+<br>
+{{s1}}
+<br>
+
+</div>
+
+{% endblock %} 
+
+<!--{% for fl in flat.items %}
+		
+		<h4>{{fl.label}}</h4>
+		<p>{{fl}}</p>
+	{% endfor %}
+-->
+

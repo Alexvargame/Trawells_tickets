@@ -1,0 +1,58 @@
+﻿{% extends 'railway/base_railway.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	City
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<div class="card" style="width: 50rem;background-color: #dddddd;color:#2c2c2c;">
+ 	 <div class="card-header">
+		Пользователь-{{user}}
+ 	 </div>
+	 
+  	 {{city.name}}</br>
+	 {%for station in city.get_stations%}
+	 <p style={%if station.status %} color:black; {%else%} color:red; {%endif%}>{{station}}{%if station.status %}{%else%} -Временно закрыт{%endif%}</p>
+	 {%endfor%}
+	 
+	
+	</div>
+{{s}}
+	
+{% if request.user.is_authenticated %}
+
+
+
+<div class="obj-panel">
+	<p>Выбрать</p>
+	 {% block obj-panel%}
+		<a class="btn btn-light" href="{{city.get_update_url}}">Редктировать</a>
+		<a class="btn btn-danger" href="{{city.get_delete_url}}">Del</a>
+		<a class="btn btn-light" href="{% url 'cities_url'%}">Вернуться к списку</a>
+	 {%endblock%}
+	</div>
+{% endif%}
+
+
+
+
+<br>
+{{s1}}
+<br>
+
+</div>
+
+{% endblock %} 
+
+<!--{% for fl in flat.items %}
+		
+		<h4>{{fl.label}}</h4>
+		<p>{{fl}}</p>
+	{% endfor %}
+-->
+

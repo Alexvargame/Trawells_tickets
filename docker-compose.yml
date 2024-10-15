@@ -1,0 +1,21 @@
+services:
+  db.sqlite3:
+    image: sqlite3
+    volumes:
+      - pg_data:/Python39/django/trawells/
+  django:
+    container_name: trawells
+    build:
+      context: /
+      dockerfile: Dockerfile
+    command: bash -c *python /Python39/django/trawells/manage.py migrate --noinput && 
+               python /Python39/django/trawells/manage.py runserver 0.0.0.0:8000*
+    volumes:
+      - .:/Python39/django/trawells/
+    ports:
+      - 8000:8000
+    depends_on:
+      - db.sqlite3
+volumes:
+  pg_data:
+
